@@ -10,7 +10,12 @@ endif()
 
 set(geo_GDAL_SOURCES)
 set(geo_OPENCV_SOURCES)
-if(GDAL_FOUND)
+
+# example applications are not working when GDAL is installed
+# CsConvertor exception raised:
+# https://github.com/melowntech/libgeo/commit/77798c2f20080150939de0ca16e84859eb810cc6
+#if(GDAL_FOUND)
+if(0)
   list(APPEND geo_EXTRA_DEPENDS GDAL)
   list(APPEND geo_EXTRA_DEFINITIONS GEO_HAS_GDAL=1)
   message(STATUS "geo: compiling in GDAL support")
@@ -144,7 +149,8 @@ buildsys_target_compile_definitions(geo ${MODULE_DEFINITIONS})
 #target_compile_definitions(geo PUBLIC ACCEPT_USE_OF_DEPRECATED_PROJ_API_H)
 
 # test stuff
-if(GDAL_FOUND AND MODULE_service_FOUND)
+#if(GDAL_FOUND AND MODULE_service_FOUND)
+if(0)
   add_subdirectory(test-factors EXCLUDE_FROM_ALL)
   add_subdirectory(test-hconv EXCLUDE_FROM_ALL)
   add_subdirectory(test-srs EXCLUDE_FROM_ALL)
